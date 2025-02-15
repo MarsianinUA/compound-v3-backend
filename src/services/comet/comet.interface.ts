@@ -1,4 +1,4 @@
-export interface aprData {
+export interface AprData {
   supplyApr: string;
   borrowApr: string;
 }

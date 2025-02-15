@@ -8,7 +8,7 @@ import { CometDataDto } from './comet-data.dto';
 export class CometController {
   constructor(private readonly comet: CometService) {}
 
-  @Get('/:cometProxyAddress')
+  @Get('/apr/:cometProxyAddress')
   @ApiResponse({ status: 200, type: CometDataDto })
   @SerializeOptions({ type: CometDataDto })
   @ApiParam({
