@@ -1,6 +1,6 @@
 export interface CometGraphQLResponse {
-    comet: {
-      supplyRate: string;
-      borrowRate: string;
-    };
-  }
+  comet: {
+    supplyRate: string;
+    borrowRate: string;
+  };
+}

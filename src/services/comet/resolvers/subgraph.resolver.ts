@@ -1,7 +1,6 @@
 import { gql, request } from 'graphql-request';
 import { CometGraphQLResponse } from './network';
 
-
 const query = gql`
   query getCometData($id: String!) {
     comet(id: $id) {
@@ -11,6 +10,11 @@ const query = gql`
   }
 `;
 
-export async function fetchSubgraphData(addressCometProxy: string, subgraphUrl: string): Promise<CometGraphQLResponse> {
-    return await request<CometGraphQLResponse>(subgraphUrl, query, { id: addressCometProxy });
+export async function fetchSubgraphData(
+  addressCometProxy: string,
+  subgraphUrl: string,
+): Promise<CometGraphQLResponse> {
+  return await request<CometGraphQLResponse>(subgraphUrl, query, {
+    id: addressCometProxy,
+  });
 }

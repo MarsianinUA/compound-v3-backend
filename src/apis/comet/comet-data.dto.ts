@@ -7,7 +7,10 @@ import { CometData } from '@/entities/comet';
 export class CometDataDto implements CometData {
   @Expose()
   @IsString()
-  @ApiProperty({ type: String, example: '0x3afdc9bca9213a35503b077a6072f3d0d5ab0840' })
+  @ApiProperty({
+    type: String,
+    example: '0x3afdc9bca9213a35503b077a6072f3d0d5ab0840',
+  })
   address: string;
 
   @Expose()

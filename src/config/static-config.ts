@@ -20,5 +20,5 @@ const logLevel = process.env.LOG_LEVEL
 export const staticConfig = {
   port,
   logLevel,
-  subgraphUrl
+  subgraphUrl,
 };
