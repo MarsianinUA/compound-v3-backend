@@ -31,6 +31,15 @@ This layers designed to maintain structure as it scales and organized by levels.
   "logLevel": "info"
 }
 ```
+## Cometcheck
+`/comet`
+```
+{
+  "address": "0x3afdc9bca9213a35503b077a6072f3d0d5ab0840",
+  "SupplyAPR": "4.7930067462384",
+  "BorrowAPR": "5.9379692082624"
+}
+```
 
 ## Swagger
 `/swagger`
