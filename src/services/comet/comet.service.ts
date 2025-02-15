@@ -41,10 +41,10 @@ export class CometService{
 
 
 
-public async getCometData(cometProxyAddress: string): Promise<CometData> {
+public getCometData(cometProxyAddress: string): Promise<CometData> {
     if (!cometProxyAddress) {
       throw new Error(`Missing token address`);
     }
-    return await this.fetchCometData(cometProxyAddress);
+    return this.fetchCometData(cometProxyAddress);
   }
 }
