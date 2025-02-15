@@ -1,4 +1,4 @@
-# Nest Compound v3 Subgraph
+# Compound v3 Backend
 
 ## Quickstart
 1. Create `.env` file and fill with the "REQUIRED" variables from `.env.xmpl`
