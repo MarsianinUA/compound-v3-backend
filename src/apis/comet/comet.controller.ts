@@ -4,9 +4,9 @@ import { ApiResponse, ApiParam } from '@nestjs/swagger';
 import { CometData } from '@/entities/comet';
 import { CometDataDto } from './comet-data.dto';
 
-@Controller('token')
+@Controller('comet')
 export class CometController {
-  constructor(private readonly token: CometService) {}
+  constructor(private readonly comet: CometService) {}
 
   @Get('/:cometProxyAddress')
   @ApiResponse({ status: 200, type: CometDataDto })
@@ -20,6 +20,6 @@ export class CometController {
   getCometData(
     @Param('cometProxyAddress') cometProxyAddress: string,
   ): Promise<CometData> {
-    return this.token.getCometData(cometProxyAddress);
+    return this.comet.getCometData(cometProxyAddress);
   }
 }

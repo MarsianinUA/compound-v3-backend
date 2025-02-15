@@ -1,7 +1,6 @@
-import { gql, request } from 'graphql-request';
-import { CometGraphQLResponse } from './network';
+import { CometGraphQLResponse } from './resolvers.interface';
 
-const query = gql`
+const query = `
   query getCometData($id: String!) {
     comet(id: $id) {
       supplyRate
@@ -14,7 +13,17 @@ export async function fetchSubgraphData(
   addressCometProxy: string,
   subgraphUrl: string,
 ): Promise<CometGraphQLResponse> {
-  return await request<CometGraphQLResponse>(subgraphUrl, query, {
-    id: addressCometProxy,
+  const response = await fetch(subgraphUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+      variables: { id: addressCometProxy },
+    }),
   });
+
+  const data = await response.json();
+  return data.data as CometGraphQLResponse;
 }

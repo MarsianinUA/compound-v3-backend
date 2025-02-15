@@ -1,5 +1,5 @@
 {
-  "name": "backend-skeleton",
+  "name": "nest-compound-v3-subgraph",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -29,7 +29,6 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.7",
-    "graphql-request": "^7.1.2",
     "nest-winston": "^1.10.2",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",

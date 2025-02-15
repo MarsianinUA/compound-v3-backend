@@ -1,4 +1,4 @@
-# Backend Skeleton
+# Nest Compound v3 Subgraph
 
 ## Quickstart
 1. Create `.env` file and fill with the "REQUIRED" variables from `.env.xmpl`
@@ -31,7 +31,7 @@ This layers designed to maintain structure as it scales and organized by levels.
   "logLevel": "info"
 }
 ```
-## Cometcheck
+## Comet
 `/comet`
 ```
 {

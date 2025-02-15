@@ -3,33 +3,31 @@ import { ConfigService } from '@nestjs/config';
 import { CometData } from '@/entities/comet';
 import { fetchSubgraphData } from './resolvers/subgraph.resolver';
 import BigNumber from 'bignumber.js';
-import { CometGraphQLResponse } from './resolvers/network';
+import { CometGraphQLResponse } from './resolvers/resolvers.interface';
+import { aprData } from './comet.interface';
 
 @Injectable()
 export class CometService {
   constructor(private readonly config: ConfigService) {}
   private readonly logger = new Logger(CometService.name);
 
-  private calculateApr(subgraphData: CometGraphQLResponse): {
-    SupplyAPR: string;
-    BorrowAPR: string;
-  } {
+  private calculateApr(subgraphData: CometGraphQLResponse): aprData {
     const secondsPerYear = new BigNumber(60 * 60 * 24 * 365);
     const supplyRate = new BigNumber(subgraphData.comet.supplyRate);
     const borrowRate = new BigNumber(subgraphData.comet.borrowRate);
-    const SupplyAPR: string = supplyRate
-      .div(new BigNumber(10).pow(18))
+    const supplyApr: string = supplyRate
+      .div(new BigNumber(1e18))
       .times(secondsPerYear)
       .times(100)
-      .toString();
-    const BorrowAPR: string = borrowRate
-      .div(new BigNumber(10).pow(18))
+      .toFixed();
+    const borrowApr: string = borrowRate
+      .div(new BigNumber(1e18))
       .times(secondsPerYear)
       .times(100)
-      .toString();
+      .toFixed();
     return {
-      SupplyAPR,
-      BorrowAPR,
+      supplyApr: supplyApr,
+      borrowApr: borrowApr,
     };
   }
 
@@ -43,8 +41,8 @@ export class CometService {
 
       return {
         address: cometProxyAddress,
-        SupplyAPR: cometData.SupplyAPR,
-        BorrowAPR: cometData.BorrowAPR,
+        SupplyAPR: cometData.supplyApr,
+        BorrowAPR: cometData.borrowApr,
       };
     } catch (error) {
       const message = `Error fetching token data: ${error.message}`;
