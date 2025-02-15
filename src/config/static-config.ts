@@ -1,6 +1,12 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+const missEnvError = (envName) =>
+  new Error(`Required ENV not found: ${envName}`);
+
+const subgraphUrl = process.env.URL_SUBGRAPH;
+if (!subgraphUrl) throw missEnvError('URL_SUBGRAPH');
+
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const logLevel = process.env.LOG_LEVEL
   ? process.env.LOG_LEVEL.toLowerCase()
@@ -14,4 +20,5 @@ const logLevel = process.env.LOG_LEVEL
 export const staticConfig = {
   port,
   logLevel,
+  subgraphUrl
 };
