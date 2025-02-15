@@ -4,26 +4,27 @@ import { CometData } from '@/entities/comet';
 import BigNumber from 'bignumber.js';
 import { CometGraphQLResponse, fetchSubgraphData } from './resolvers';
 import { AprData } from './comet.interface';
+import { SECONDS_PER_YEAR, PERCENTS_PRECISION } from '@/constants';
 
 @Injectable()
 export class CometService {
   constructor(private readonly config: ConfigService) {}
   private readonly logger = new Logger(CometService.name);
+  private readonly secondsPerYear = new BigNumber(SECONDS_PER_YEAR);
 
   private calculateApr(subgraphData: CometGraphQLResponse): AprData {
-    const secondsPerYear = new BigNumber(60 * 60 * 24 * 365);
     const supplyRate = new BigNumber(subgraphData.comet.supplyRate);
     const borrowRate = new BigNumber(subgraphData.comet.borrowRate);
     const supplyApr: string = supplyRate
       .div(new BigNumber(1e18))
-      .times(secondsPerYear)
+      .times(this.secondsPerYear)
       .times(100)
-      .toFixed(18);
+      .toFixed(PERCENTS_PRECISION);
     const borrowApr: string = borrowRate
       .div(new BigNumber(1e18))
-      .times(secondsPerYear)
+      .times(this.secondsPerYear)
       .times(100)
-      .toFixed(18);
+      .toFixed(PERCENTS_PRECISION);
     return {
       supplyApr: supplyApr,
       borrowApr: borrowApr,

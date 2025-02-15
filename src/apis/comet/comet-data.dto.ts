@@ -15,11 +15,11 @@ export class CometDataDto implements CometData {
 
   @Expose()
   @IsString()
-  @ApiProperty({ type: String, example: '4.797737751729600000' })
+  @ApiProperty({ type: String, example: '4.80092' })
   supplyApr: string;
 
   @Expose()
   @IsString()
-  @ApiProperty({ type: String, example: '5.942349766800000000' })
+  @ApiProperty({ type: String, example: '5.94530' })
   borrowApr: string;
 }
