@@ -3,7 +3,6 @@ import { ConfigService } from '@nestjs/config';
 import { CometService } from '@/services/comet';
 import { CometGraphQLResponse } from '@/services/comet/resolvers';
 
-
 describe('CometService', () => {
   let service: CometService;
   let configService: ConfigService;
